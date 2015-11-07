@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="10" height="16" tilewidth="48" tileheight="50" nextobjectid="1">
+ <tileset firstgid="1" name="river" tilewidth="48" tileheight="50" tilecount="10">
+  <image source="finished images/river.png" width="240" height="100"/>
+ </tileset>
+ <tileset firstgid="11" name="bridge" tilewidth="48" tileheight="50" tilecount="6">
+  <image source="finished images/bridge.jpg" width="144" height="100"/>
+ </tileset>
+ <tileset firstgid="17" name="vertical road" tilewidth="48" tileheight="50" tilecount="1">
+  <image source="finished images/vertical road.jpg" width="48" height="50"/>
+ </tileset>
+ <tileset firstgid="18" name="pavement" tilewidth="48" tileheight="50" tilecount="1">
+  <image source="finished images/pavement.jpg" width="48" height="50"/>
+ </tileset>
+ <tileset firstgid="19" name="london eye" tilewidth="48" tileheight="50" tilecount="4">
+  <image source="finished images/london eye.jpg" width="96" height="100"/>
+ </tileset>
+ <tileset firstgid="23" name="ice cream" tilewidth="48" tileheight="50" tilecount="2">
+  <image source="finished images/ice cream.jpg" width="96" height="50"/>
+ </tileset>
+ <tileset firstgid="25" name="bus stop" tilewidth="48" tileheight="50" tilecount="1">
+  <image source="finished images/bus stop.jpg" width="48" height="50"/>
+ </tileset>
+ <tileset firstgid="26" name="statue" tilewidth="48" tileheight="50" tilecount="1">
+  <image source="finished images/statue.jpg" width="48" height="50"/>
+ </tileset>
+ <tileset firstgid="27" name="hotel" tilewidth="48" tileheight="50" tilecount="1">
+  <image source="finished images/hotel.jpg" width="48" height="50"/>
+ </tileset>
+ <tileset firstgid="28" name="flowers" tilewidth="48" tileheight="50" tilecount="1">
+  <image source="finished images/flowers.jpg" width="48" height="50"/>
+ </tileset>
+ <tileset firstgid="29" name="road zone" tilewidth="48" tileheight="50" tilecount="1">
+  <image source="finished images/road zone.jpg" width="48" height="50"/>
+ </tileset>
+ <tileset firstgid="30" name="horizontal road" tilewidth="48" tileheight="50" tilecount="1">
+  <image source="finished images/horizontal road.jpg" width="48" height="50"/>
+ </tileset>
+ <tileset firstgid="31" name="rail" tilewidth="48" tileheight="50" tilecount="1">
+  <image source="finished images/rail.jpg" width="48" height="50"/>
+ </tileset>
+ <tileset firstgid="32" name="children" tilewidth="48" tileheight="50" tilecount="2">
+  <image source="finished images/children.jpg" width="96" height="50"/>
+ </tileset>
+ <tileset firstgid="34" name="shard" tilewidth="48" tileheight="50" tilecount="6">
+  <image source="finished images/shard.jpg" width="96" height="150"/>
+ </tileset>
+ <tileset firstgid="40" name="truck" tilewidth="48" tileheight="50" tilecount="3">
+  <image source="finished images/truck.jpg" width="48" height="150"/>
+ </tileset>
+ <tileset firstgid="43" name="house1" tilewidth="48" tileheight="50" tilecount="1">
+  <image source="finished images/house1.jpg" width="48" height="50"/>
+ </tileset>
+ <tileset firstgid="44" name="house2" tilewidth="48" tileheight="50" tilecount="1">
+  <image source="finished images/house2.jpg" width="48" height="50"/>
+ </tileset>
+ <tileset firstgid="45" name="car1" tilewidth="48" tileheight="50" tilecount="1">
+  <image source="finished images/car1.jpg" width="48" height="50"/>
+ </tileset>
+ <tileset firstgid="46" name="car2" tilewidth="48" tileheight="50" tilecount="1">
+  <image source="finished images/car2.jpg" width="48" height="50"/>
+ </tileset>
+ <tileset firstgid="47" name="runway" tilewidth="48" tileheight="50" tilecount="6">
+  <image source="finished images/runway.bmp" width="96" height="150"/>
+ </tileset>
+ <tileset firstgid="53" name="blackrock" tilewidth="48" tileheight="50" tilecount="6">
+  <image source="finished images/blackrock.jpg" width="144" height="100"/>
+ </tileset>
+ <tileset firstgid="59" name="parliament" tilewidth="48" tileheight="50" tilecount="6">
+  <image source="finished images/parliament2.jpg" width="144" height="100"/>
+ </tileset>
+ <tileset firstgid="65" name="church" tilewidth="48" tileheight="50" tilecount="4">
+  <image source="finished images/church.jpg" width="96" height="100"/>
+ </tileset>
+ <tileset firstgid="69" name="grass" tilewidth="48" tileheight="50" tilecount="1">
+  <image source="finished images/grass.jpg" width="48" height="50"/>
+ </tileset>
+ <tileset firstgid="70" name="tree" tilewidth="48" tileheight="50" tilecount="1">
+  <image source="finished images/tree.gif" width="48" height="50"/>
+ </tileset>
+ <tileset firstgid="71" name="mi6" tilewidth="48" tileheight="50" tilecount="6">
+  <image source="finished images/mi6.jpg" width="144" height="100"/>
+ </tileset>
+ <tileset firstgid="77" name="office" tilewidth="48" tileheight="50" tilecount="1">
+  <image source="finished images/office_building.png" width="48" height="50"/>
+ </tileset>
+ <tileset firstgid="78" name="landing zone" tilewidth="48" tileheight="50" tilecount="1">
+  <image source="finished images/landing zone.jpg" width="48" height="50"/>
+ </tileset>
+ <tileset firstgid="79" name="traffic light" tilewidth="48" tileheight="50" tilecount="1">
+  <image source="finished images/traffic_light.jpg" width="48" height="50"/>
+ </tileset>
+ <tileset firstgid="80" name="taxi" tilewidth="48" tileheight="50" tilecount="1">
+  <image source="finished images/taxi.png" width="48" height="50"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="10" height="16">
+  <data encoding="base64" compression="zlib">
+   eJyN0OdOAkEUhuFdAWkBRAQBQRBUQHqvgvSO3P/V8G5yfkw2uwk/nmS+Od/MFl3TtAc44IQLflwQgC7zR7jhgRc+BBHCkzJ/thFGEm/C2HtFXNYRvEgvYepl8SHrKGIW973bSCOlyNxpIyqoIYc8yliLotKryuwTX5LnWKBkcd83CnJmiRV+lPf+N32HOV+F8R+66KEveYwJfk29AYYYSZ5ihj/U0bjjuU205PwWO+wlnxVtdGT/gCNOFr0bb80YAQ==
+  </data>
+ </layer>
+</map>
