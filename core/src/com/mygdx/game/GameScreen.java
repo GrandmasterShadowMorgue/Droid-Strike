@@ -10,15 +10,20 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
+import java.util.ArrayList;
+
 public class GameScreen implements Screen {
 
     final DroidStrike game;
+    ArrayList<Player> bullets;
 
     OrthographicCamera camera;
 
     private SpriteBatch batch;
     private Texture texture;
     private TextureRegion region;
+    private TextureRegion bull;
+    private Texture textur;
     private Sprite sprite;
     private Player player;
 
@@ -27,8 +32,10 @@ public class GameScreen implements Screen {
         this.player = new Player();
         this.batch = new SpriteBatch();
         this.texture = new Texture(Gdx.files.internal("drone.png"));
+        this.textur = new Texture(Gdx.files.internal("bullet.png"));
         this.sprite = new Sprite(this.texture);
         region = new TextureRegion(texture);
+        bull = new TextureRegion(bull);
         sprite.setPosition(0, 0);
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 800, 480);
@@ -39,20 +46,35 @@ public class GameScreen implements Screen {
         Gdx.gl.glClearColor(0, 0, 0.2f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+        for(int i = 0; i < bullets.size(); i++) {
+            bullets.remove(i);
+        }
+
+        if (Gdx.input.isTouched()) {
+            Player bullet = new Player();
+            bullet.setDirection(player.direction.x, player.direction.y);
+            bullet.position.x = player.position.x;
+            bullet.position.y = player.position.y;
+            bullets.add(bullet);
+            for (Player b: bullets) {
+                b.move(delta);
+            }
+        }
+
         player.setDirection(Gdx.input.getAccelerometerX(), Gdx.input.getAccelerometerY());
         System.out.println("X is :" + Gdx.input.getAccelerometerX());
         System.out.println("Y is :" + Gdx.input.getAccelerometerY());
         player.move(delta);
 
         batch.begin();
+        for(Player b: bullets) {
+            batch.draw(bull, b.position.x, b.position.y);
+        }
         batch.draw(region, player.position.x, player.position.y);
         batch.end();
         camera.update();
 
-        if (Gdx.input.isTouched()) {
-            game.setScreen(new GameScreen(game));
-            dispose();
-        }
+
     }
 
 	@Override
@@ -77,7 +99,9 @@ public class GameScreen implements Screen {
 
     @Override
     public void dispose() {
-
+        batch.dispose();
+        textur.dispose();
+        texture.dispose();
     }
 }
 
