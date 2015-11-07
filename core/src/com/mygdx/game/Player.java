@@ -21,7 +21,7 @@ public class Player {
     public void move(float delta){
         // Moves the character.
 
-            this.position.x += 10*this.speed*direction.x*delta;
+            this.position.x += 10*this.speed*this.direction.x*delta;
             this.position.y += 10*this.speed*this.direction.y*delta;
     }
 
