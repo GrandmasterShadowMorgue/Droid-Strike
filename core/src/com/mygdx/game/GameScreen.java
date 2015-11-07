@@ -21,22 +21,19 @@ public class GameScreen implements Screen {
 
     private SpriteBatch batch;
 
-    private TextureRegion region;
     private TextureRegion bull;
-    private Texture textur;
-    private Sprite sprite;
+    private Texture bulletTexture;
+
+    private TextureRegion region;
     private Texture texture;
 
     private TextureRegion regionDown;
-    private Sprite spriteDown;
     private Texture textureDown;
 
     private TextureRegion regionUp;
-    private Sprite spriteUp;
     private Texture textureUp;
 
     private TextureRegion regionLeft;
-    private Sprite spriteLeft;
     private Texture textureLeft;
 
     private Player player;
@@ -50,28 +47,22 @@ public class GameScreen implements Screen {
 		this.textureDown = new Texture(Gdx.files.internal("southdrone.png"));
 		this.textureUp = new Texture(Gdx.files.internal("northdrone.png"));
 		this.textureLeft = new Texture(Gdx.files.internal("eastdrone.png"));
-        this.textur = new Texture(Gdx.files.internal("bullet.png"));
+        this.bulletTexture = new Texture(Gdx.files.internal("bullet.png"));
 
-        this.sprite = new Sprite(this.texture);
+        bull = new TextureRegion(bulletTexture);
+
         region = new TextureRegion(texture);
-        sprite.setPosition(0, 0);
 
-        bull = new TextureRegion(textur);
-
-        this.spriteDown = new Sprite(this.textureDown);
         regionDown = new TextureRegion(textureDown);
-        spriteDown.setPosition(0, 0);
 
-        this.spriteUp = new Sprite(this.textureUp);
         regionUp = new TextureRegion(textureUp);
-        spriteUp.setPosition(0, 0);
 
-        this.spriteLeft= new Sprite(this.textureLeft);
         regionLeft = new TextureRegion(textureLeft);
-        spriteLeft.setPosition(0, 0);
 
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 800, 480);
+
+		bullets = new ArrayList<Player>();
     }
 
 	@Override
@@ -87,7 +78,13 @@ public class GameScreen implements Screen {
 		player.speed = 10;
 
         for(int i = 0; i < bullets.size(); i++) {
+			if (bullets.size() > 50 || bullets.get(i).position.x > 800
+					|| bullets.get(i).position.y > 480
+					|| bullets.get(i).position.y < 0
+					|| bullets.get(i).position.x < 0)
+
             bullets.remove(i);
+			else bullets.get(i).move(delta);
         }
 
         if (Gdx.input.isTouched()) {
@@ -95,6 +92,7 @@ public class GameScreen implements Screen {
             bullet.setDirection(player.direction.x, player.direction.y);
             bullet.position.x = player.position.x;
             bullet.position.y = player.position.y;
+            bullet.speed = 100;
             bullets.add(bullet);
             for (Player b: bullets) {
                 b.move(delta);
@@ -108,13 +106,13 @@ public class GameScreen implements Screen {
         }
 
 		if (xdir < 0 && xdir > ydir)
-        	batch.draw(region, player.position.x - sprite.getWidth()/2f, player.position.y);
+        	batch.draw(region, player.position.x - texture.getWidth()/2f, player.position.y);
 		else if (xdir > 0 && xdir > ydir)
-        	batch.draw(regionLeft, player.position.x - spriteLeft.getWidth()/2f, player.position.y);
+        	batch.draw(regionLeft, player.position.x - textureLeft.getWidth()/2f, player.position.y);
 		else if (ydir < 0 && ydir > xdir)
-        	batch.draw(regionUp, player.position.x - spriteUp.getWidth()/2f, player.position.y);
+        	batch.draw(regionUp, player.position.x - textureUp.getWidth()/2f, player.position.y);
 		else
-			batch.draw(regionDown, player.position.x - spriteDown.getWidth()/2f, player.position.y);
+			batch.draw(regionDown, player.position.x - textureDown.getWidth()/2f, player.position.y);
 
         batch.end();
         camera.update();
@@ -143,8 +141,11 @@ public class GameScreen implements Screen {
     @Override
     public void dispose() {
         batch.dispose();
-        textur.dispose();
+        bulletTexture.dispose();
         texture.dispose();
+        textureUp.dispose();
+        textureDown.dispose();
+        textureLeft.dispose();
     }
 }
 
