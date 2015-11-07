@@ -19,7 +19,8 @@ public class DroidStrike extends Game {
 		menuScreen = new MainMenuScreen(this);
 		gameScreen = new GameScreen(this);
 
-        this.setScreen(menuScreen);
+
+		this.setScreen(menuScreen);
 	}
 
 	/*
