@@ -16,24 +16,24 @@ public class DroidStrike extends Game {
 	public void create () {
 		Gdx.input.setCatchBackKey(true);
 
-    	am = new AssetsManager();
-		am.loadResources();
-
-		menuScreen = new AsteroidsMainMenuScreen();
-		gameScreen = new AsteroidsGameScreen();
+		menuScreen = new MainMenuScreen();
+		gameScreen = new GameScreen();
 
         this.setScreen(menuScreen);
 	}
 
+	/*
 	@Override
 	public void render () {
 		super.render();
 	}
+	*/
 
-	@Override
-	public void dispose() {
-        batch.dispose();
-		img.dispose();
+ 	@Override
+    public void dispose() {
+        super.dispose();
+        menuScreen.dispose();
+        gameScreen.dispose();
     }
-
 }
+
