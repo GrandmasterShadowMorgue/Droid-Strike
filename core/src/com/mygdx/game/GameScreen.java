@@ -1,14 +1,16 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 
 import java.util.ArrayList;
 
@@ -16,11 +18,11 @@ public class GameScreen implements Screen {
 
     final DroidStrike game;
     ArrayList<Player> bullets;
-
+    private TiledMapRenderer mapRenderer;
     OrthographicCamera camera;
 
     private SpriteBatch batch;
-
+    private TiledMap map;
     private TextureRegion bull;
     private Texture bulletTexture;
 
@@ -42,13 +44,14 @@ public class GameScreen implements Screen {
         this.game = game;
         this.player = new Player();
         this.batch = new SpriteBatch();
-
+        this.map = new TmxMapLoader().load("london.tmx");
         this.texture = new Texture(Gdx.files.internal("westdrone.png"));
 		this.textureDown = new Texture(Gdx.files.internal("southdrone.png"));
 		this.textureUp = new Texture(Gdx.files.internal("northdrone.png"));
 		this.textureLeft = new Texture(Gdx.files.internal("eastdrone.png"));
         this.bulletTexture = new Texture(Gdx.files.internal("bullet.png"));
-
+        this.mapRenderer = new OrthogonalTiledMapRenderer(this.map);
+        mapRenderer.setView(camera);
         bull = new TextureRegion(bulletTexture);
 
         region = new TextureRegion(texture);
