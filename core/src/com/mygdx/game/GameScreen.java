@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Vector2;
 
 import java.util.ArrayList;
 
@@ -78,25 +79,26 @@ public class GameScreen implements Screen {
 		player.speed = 10;
 
         for(int i = 0; i < bullets.size(); i++) {
-			if (bullets.size() > 50 || bullets.get(i).position.x > 800
-					|| bullets.get(i).position.y > 480
-					|| bullets.get(i).position.y < 0
-					|| bullets.get(i).position.x < 0)
-
-            bullets.remove(i);
-			else bullets.get(i).move(delta);
+			if (bullets.size() > 50 || bullets.get(i).killOrInc())
+				bullets.remove(i);
+			else bullets.get(i).moveBullet(delta);
         }
 
         if (Gdx.input.isTouched()) {
             Player bullet = new Player();
-            bullet.setDirection(player.direction.x, player.direction.y);
+			Vector2 dir = new Vector2(player.direction.x, player.direction.y);
+			dir = dir.nor();
+			if (xdir < 0 && Math.abs(xdir) > Math.abs(ydir))
+            	bullet.setDirection(0, 1);
+			else if (xdir > 0 && Math.abs(xdir) > Math.abs(ydir))
+            	bullet.setDirection(0, -1);
+			else if (ydir < 0 && Math.abs(ydir) > Math.abs(xdir))
+				bullet.setDirection(-1, 0);
+			else bullet.setDirection(1, 0);
             bullet.position.x = player.position.x;
             bullet.position.y = player.position.y;
-            bullet.speed = 100;
+            bullet.speed = 40;
             bullets.add(bullet);
-            for (Player b: bullets) {
-                b.move(delta);
-            }
         }
 
         batch.begin();
@@ -105,14 +107,14 @@ public class GameScreen implements Screen {
             batch.draw(bull, b.position.x, b.position.y);
         }
 
-		if (xdir < 0 && xdir > ydir)
-        	batch.draw(region, player.position.x - texture.getWidth()/2f, player.position.y);
-		else if (xdir > 0 && xdir > ydir)
-        	batch.draw(regionLeft, player.position.x - textureLeft.getWidth()/2f, player.position.y);
-		else if (ydir < 0 && ydir > xdir)
+		if (xdir < 0 && Math.abs(xdir) > Math.abs(ydir))
         	batch.draw(regionUp, player.position.x - textureUp.getWidth()/2f, player.position.y);
-		else
+		else if (xdir > 0 && Math.abs(xdir) > Math.abs(ydir))
 			batch.draw(regionDown, player.position.x - textureDown.getWidth()/2f, player.position.y);
+		else if (ydir < 0 && Math.abs(ydir) > Math.abs(xdir))
+        	batch.draw(region, player.position.x - texture.getWidth()/2f, player.position.y);
+		else
+        	batch.draw(regionLeft, player.position.x - textureLeft.getWidth()/2f, player.position.y);
 
         batch.end();
         camera.update();

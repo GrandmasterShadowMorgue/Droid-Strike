@@ -9,7 +9,12 @@ public class Player {
     protected Vector2 direction, position;
     protected boolean isAttacking, isAlive;
 
+	private int timer;
+	private static final int THRESHOLD = 1000;
+
     public Player(){
+
+		timer = 0;
 
         this.direction = new Vector2(0,0); // Default facing south
         this.position = new Vector2(0,0);
@@ -31,12 +36,27 @@ public class Player {
 			else if (position.y > 480f) this.position.y = 0f;
     }
 
+    public void moveBullet (float delta){
+        // Moves the character.
+
+            this.position.x += 10*this.speed*this.direction.x*delta;
+            this.position.y += 10*this.speed*this.direction.y*delta;
+    }
+
     public void setDirection(float x, float y) {
         //Pass accelerometer data in.
 
         this.direction.x = x;
         this.direction.y = y;
     }
+
+	public boolean killOrInc (){
+		if (timer > THRESHOLD) return true;
+		else {
+			++timer;
+			return false;
+		}
+	}
 
     public void setAttacking(boolean bool) {
 
