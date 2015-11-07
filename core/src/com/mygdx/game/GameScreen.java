@@ -46,7 +46,9 @@ public class GameScreen implements Screen {
         this.game = game;
         this.player = new Player();
         this.batch = new SpriteBatch();
+
         this.map = new TmxMapLoader().load("london.tmx");
+
         this.texture = new Texture(Gdx.files.internal("westdrone.png"));
 		this.textureDown = new Texture(Gdx.files.internal("southdrone.png"));
 		this.textureUp = new Texture(Gdx.files.internal("northdrone.png"));
