@@ -50,14 +50,14 @@ public class GameScreen implements Screen {
 		this.textureDown = new Texture(Gdx.files.internal("southdrone.png"));
 		this.textureUp = new Texture(Gdx.files.internal("northdrone.png"));
 		this.textureLeft = new Texture(Gdx.files.internal("eastdrone.png"));
-
         this.textur = new Texture(Gdx.files.internal("bullet.png"));
 
         this.sprite = new Sprite(this.texture);
-
         region = new TextureRegion(texture);
-        bull = new TextureRegion(bull);
         sprite.setPosition(0, 0);
+
+        bull = new TextureRegion(textur);
+
         this.spriteDown = new Sprite(this.textureDown);
         regionDown = new TextureRegion(textureDown);
         spriteDown.setPosition(0, 0);
