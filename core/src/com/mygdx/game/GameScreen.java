@@ -17,19 +17,33 @@ public class GameScreen implements Screen {
     OrthographicCamera camera;
 
     private SpriteBatch batch;
-    private Texture texture;
+
     private TextureRegion region;
     private Sprite sprite;
+    private Texture texture;
+
+    private TextureRegion regionDown;
+    private Sprite spriteDown;
+    private Texture textureDown;
+
+    private TextureRegion regionUp;
+    private Sprite spriteUp;
+    private Texture textureUp;
+
+    private TextureRegion regionLeft;
+    private Sprite spriteLeft;
+    private Texture textureLeft;
+
     private Player player;
 
     public GameScreen (final DroidStrike game) {
         this.game = game;
         this.player = new Player();
         this.batch = new SpriteBatch();
-        this.texture = new Texture(Gdx.files.internal("drone.png"));
-		this.textureDown = new Texture(Gdx.files.internal("droneDown.png"));
-		this.textureUp = new Texture(Gdx.files.internal("droneUp.png"));
-		this.textureLeft = new Texture(Gdx.files.internal("droneLeft.png"));
+        this.texture = new Texture(Gdx.files.internal("westdrone.png"));
+		this.textureDown = new Texture(Gdx.files.internal("southdrone.png"));
+		this.textureUp = new Texture(Gdx.files.internal("northdrone.png"));
+		this.textureLeft = new Texture(Gdx.files.internal("eastdrone.png"));
         this.sprite = new Sprite(this.texture);
         region = new TextureRegion(texture);
         sprite.setPosition(0, 0);

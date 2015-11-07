@@ -10,7 +10,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 
 
-
 public class MainMenuScreen implements Screen {
 
     final DroidStrike game;
@@ -20,7 +19,6 @@ public class MainMenuScreen implements Screen {
     private Texture texture;
     private float screenWidth;
     private float screenHeight;
-
 
     public MainMenuScreen(final DroidStrike gam) {
         game = gam;
@@ -33,13 +31,13 @@ public class MainMenuScreen implements Screen {
         Gdx.gl.glClearColor(0, 0, 0.2f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch = new SpriteBatch();
-        texture = new Texture(Gdx.files.internal("../data/welcome.png"));
+        texture = new Texture(Gdx.files.internal("images/menu.jpg"));
         camera.update();
         getScreenSize();
         batch.begin();
         batch.draw( texture, screenWidth, screenHeight);
         batch.end();
-        if (Gdx.input.isTouched()) { 
+        if (Gdx.input.isTouched()) {
             game.setScreen(new GameScreen(game));
             dispose();
         }
