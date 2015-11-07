@@ -27,9 +27,24 @@ public class GameScreen implements Screen {
         this.player = new Player();
         this.batch = new SpriteBatch();
         this.texture = new Texture(Gdx.files.internal("drone.png"));
+		this.textureDown = new Texture(Gdx.files.internal("droneDown.png"));
+		this.textureUp = new Texture(Gdx.files.internal("droneUp.png"));
+		this.textureLeft = new Texture(Gdx.files.internal("droneLeft.png"));
         this.sprite = new Sprite(this.texture);
         region = new TextureRegion(texture);
         sprite.setPosition(0, 0);
+        this.spriteDown = new Sprite(this.textureDown);
+        regionDown = new TextureRegion(textureDown);
+        spriteDown.setPosition(0, 0);
+
+        this.spriteUp = new Sprite(this.textureUp);
+        regionUp = new TextureRegion(textureUp);
+        spriteUp.setPosition(0, 0);
+
+        this.spriteLeft= new Sprite(this.textureLeft);
+        regionLeft = new TextureRegion(textureLeft);
+        spriteLeft.setPosition(0, 0);
+
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 800, 480);
     }
@@ -39,13 +54,23 @@ public class GameScreen implements Screen {
         Gdx.gl.glClearColor(0, 0, 0.2f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        player.setDirection(Gdx.input.getAccelerometerX(), Gdx.input.getAccelerometerY());
-        System.out.println("X is :" + Gdx.input.getAccelerometerX());
-        System.out.println("Y is :" + Gdx.input.getAccelerometerY());
+		float ydir = Gdx.input.getAccelerometerY(), xdir = Gdx.input.getAccelerometerX();
+
+        player.setDirection(ydir, -1*xdir);
         player.move(delta);
+		player.speed = 10;
 
         batch.begin();
-        batch.draw(region, player.position.x, player.position.y);
+
+		if (xdir < 0 && xdir > ydir)
+        	batch.draw(region, player.position.x - sprite.getWidth()/2f, player.position.y);
+		else if (xdir > 0 && xdir > ydir)
+        	batch.draw(regionLeft, player.position.x - spriteLeft.getWidth()/2f, player.position.y);
+		else if (ydir < 0 && ydir > xdir)
+        	batch.draw(regionUp, player.position.x - spriteUp.getWidth()/2f, player.position.y);
+		else
+			batch.draw(regionDown, player.position.x - spriteDown.getWidth()/2f, player.position.y);
+
         batch.end();
         camera.update();
 

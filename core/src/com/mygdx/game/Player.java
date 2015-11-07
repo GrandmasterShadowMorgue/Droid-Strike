@@ -23,6 +23,12 @@ public class Player {
 
             this.position.x += 10*this.speed*this.direction.x*delta;
             this.position.y += 10*this.speed*this.direction.y*delta;
+
+			if (position.x < 0f) this.position.x = 800f;
+			else if (position.x > 800f) this.position.x = 0f;
+
+			if (position.y < 0f) this.position.y = 480f;
+			else if (position.y > 480f) this.position.y = 0f;
     }
 
     public void setDirection(float x, float y) {
