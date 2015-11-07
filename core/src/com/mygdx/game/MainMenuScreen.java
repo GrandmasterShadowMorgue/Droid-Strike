@@ -6,54 +6,51 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+
+
 
 public class MainMenuScreen implements Screen {
 
     final DroidStrike game;
 
-	public static Texture backgroundTexture;
-    public static Sprite sprite;
-    private SpriteBatch spriteBatch;
-
     OrthographicCamera camera;
+    private SpriteBatch batch;
+    private Texture texture;
+    private float screenWidth;
+    private float screenHeight;
+
 
     public MainMenuScreen(final DroidStrike gam) {
         game = gam;
-
-		backgroundTexture = new Texture("images/menu.jpg");
-        sprite =new Sprite(backgroundTexture);
-		spriteBatch = new SpriteBatch();
-
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 800, 480);
-		spriteBatch = new SpriteBatch();
     }
 
 	@Override
     public void render(float delta) {
         Gdx.gl.glClearColor(0, 0, 0.2f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
-		spriteBatch.begin();
-   		spriteBatch.setProjectionMatrix(camera.combined);
-        sprite.draw(spriteBatch);
-		spriteBatch.end();
-
+        batch = new SpriteBatch();
+        texture = new Texture(Gdx.files.internal("../data/welcome.png"));
         camera.update();
-
-
-
-        if (Gdx.input.isTouched()) {
+        getScreenSize();
+        batch.begin();
+        batch.draw( texture, screenWidth, screenHeight);
+        batch.end();
+        if (Gdx.input.isTouched()) { 
             game.setScreen(new GameScreen(game));
-			dispose();
+            dispose();
         }
- 	}
+    }
+    public void getScreenSize(){
+         this.screenWidth = (Gdx.graphics.getWidth()/2)-150;
+         this.screenHeight = (Gdx.graphics.getHeight()/2);
+    }
 
 	@Override
     public void resize(int width, int height) {
-
     }
 
     @Override
@@ -74,8 +71,7 @@ public class MainMenuScreen implements Screen {
 
     @Override
     public void dispose() {
-		spriteBatch.dispose();
-		backgroundTexture.dispose();
+
     }
 }
 
