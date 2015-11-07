@@ -39,7 +39,6 @@ public class MainMenuScreen implements Screen {
         Gdx.gl.glClearColor(0, 0, 0.2f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         camera.update();
-        getScreenSize();
 
         spriteBatch.begin();
   		spriteBatch.setProjectionMatrix(camera.combined);
@@ -50,11 +49,6 @@ public class MainMenuScreen implements Screen {
             game.setScreen(new GameScreen(game));
             dispose();
         }
-    }
-
-    public void getScreenSize(){
-         this.screenWidth = (Gdx.graphics.getWidth()/2)-150;
-         this.screenHeight = (Gdx.graphics.getHeight()/2);
     }
 
 	@Override
