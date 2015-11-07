@@ -20,7 +20,6 @@ public class GameScreen implements Screen {
 
     final DroidStrike game;
     ArrayList<Player> bullets;
-    private TiledMapRenderer mapRenderer;
     OrthographicCamera camera;
 
     private SpriteBatch batch;
@@ -47,16 +46,11 @@ public class GameScreen implements Screen {
         this.player = new Player();
         this.batch = new SpriteBatch();
 
-        this.map = new TmxMapLoader().load("london.tmx");
-
         this.texture = new Texture(Gdx.files.internal("westdrone.png"));
 		this.textureDown = new Texture(Gdx.files.internal("southdrone.png"));
 		this.textureUp = new Texture(Gdx.files.internal("northdrone.png"));
 		this.textureLeft = new Texture(Gdx.files.internal("eastdrone.png"));
         this.bulletTexture = new Texture(Gdx.files.internal("bullet.png"));
-
-        this.mapRenderer = new OrthogonalTiledMapRenderer(this.map);
-        mapRenderer.setView(camera);
 
         bull = new TextureRegion(bulletTexture);
 
@@ -78,8 +72,6 @@ public class GameScreen implements Screen {
     public void render(float delta) {
         Gdx.gl.glClearColor(0, 0, 0.2f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
-        mapRenderer.render();
 
 		float ydir = Gdx.input.getAccelerometerY();
 		float xdir = Gdx.input.getAccelerometerX();
