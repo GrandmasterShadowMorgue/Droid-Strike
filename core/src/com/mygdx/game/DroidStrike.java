@@ -14,8 +14,6 @@ public class DroidStrike extends Game {
 
 	@Override
 	public void create () {
-		Gdx.input.setCatchBackKey(true);
-
 		menuScreen = new MainMenuScreen(this);
 		gameScreen = new GameScreen(this);
 
