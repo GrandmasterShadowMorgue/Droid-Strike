@@ -26,6 +26,8 @@ public class MainMenuScreen implements Screen {
 
         camera.update();
 
+
+
         if (Gdx.input.isTouched()) {
             game.setScreen(new GameScreen(game));
             dispose();
