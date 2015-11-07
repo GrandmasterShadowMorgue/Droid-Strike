@@ -16,8 +16,8 @@ public class DroidStrike extends Game {
 	public void create () {
 		Gdx.input.setCatchBackKey(true);
 
-		menuScreen = new MainMenuScreen();
-		gameScreen = new GameScreen();
+		menuScreen = new MainMenuScreen(this);
+		gameScreen = new GameScreen(this);
 
         this.setScreen(menuScreen);
 	}
